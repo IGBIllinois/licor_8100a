@@ -7,7 +7,7 @@
 
 ## Scripts
 * set_time.py - Sets the time 
-** Usage
+* Specify an IP Address, port number (default 1526), UTC or Local time
 ```
 Usage: Sets Date on Licor LI-8100A devices.
 
@@ -19,5 +19,4 @@ Options:
   --utc                 Set Time to UTC
   --local               Set Time to Local Time
 ```
-* Specify an IP Address, port number (default 1526), UTC or Local time
-
+---
