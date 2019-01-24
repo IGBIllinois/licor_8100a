@@ -6,8 +6,9 @@
 * lftp (https://lftp.yar.ru/)
 
 ## Scripts
-* bin/set_time.py - Sets the time 
+* set_time.py - Sets the time 
 ** Usage
+```
 Usage: Sets Date on Licor LI-8100A devices.
 
 Options:
