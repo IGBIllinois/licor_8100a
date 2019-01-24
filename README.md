@@ -1,4 +1,4 @@
-# Licor LI-9100A Scripts
+# Licor LI-8100A Scripts
 - Various scripts to help download data and set the time on LI-9100A Devices
 
 ## Requirements
