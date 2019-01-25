@@ -15,18 +15,19 @@ buffer_size = 2048
 
 def send_data(ipaddress,port,in_data):
 	data_length = len(in_data);
-        a = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+	a = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	try:
-        	a.connect((ipaddress,port))
-	        send_length = a.send(in_data)
+		a.connect((ipaddress,port))
+		send_length = a.send(in_data.encode())
 		if (data_length != send_length):
-			print "Error sending data. Size sent does not match"
+			print ("Error sending data. Size sent does not match")
 			return False
 
-		received_data = a.recv(buffer_size)
+		received_data = a.recv(buffer_size).decode('utf-8')
+		print ("Received Data: " + received_data)
 		a.close()
 	except: 
-		print "ERROR: Failed connecting to " + ipaddress + " on port " + str(port)
+		print ("ERROR: Failed connecting to " + ipaddress + " on port " + str(port))
 		return False
 
 
@@ -63,9 +64,9 @@ def main():
 		parser.error("Specify --utc or --local")
 		quit(1)
 
-	print 'IPAddress: ' + settings['ipaddress']
-	print 'Port: ' + settings['port']
-	print 'UTC: ' + str(settings['utc'])
+	print ("IPAddress: " + settings['ipaddress'])
+	print ("Port: " + settings['port'])
+	print ("UTC: " + str(settings['utc']))
 
 	if (settings['utc']):
 	        current_time = datetime.datetime.utcnow().strftime("%H%M")
@@ -74,12 +75,12 @@ def main():
 		current_time = datetime.datetime.now().strftime("%H%M")
 		current_date = datetime.datetime.now().strftime("%Y%m%d")
 
-	print "Current Time: " + current_date + " " + current_time
+	print ("Current Time: " + current_date + " " + current_time)
 	
 	date_xml = "<SR><CFG><CLOCK><TIME>" + current_time + "</TIME><DATE>" + current_date + "</DATE></CLOCK></CFG></SR>";
-	print "Date XML: " + date_xml
+	print ("Date XML: " + date_xml)
 	return_data = send_data(settings['ipaddress'],int(settings['port']),date_xml)
-	#print "Return Data: " + return_data
+	#print ("Return Data: " + return_data)
 	#if (isinstance(return_data,str)):
 	#	print "Return Data: " + return_data
 	#	xml_start = return_data.index("<ACK>") + 4;
