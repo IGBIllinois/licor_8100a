@@ -1,11 +1,10 @@
 # Licor LI-8100A Scripts
 - Various scripts to help download data and set the time on LI-8100A Devices
-- [https://www.licor.com/env/support/LI-8100A/home.html]
+- https://www.licor.com/env/support/LI-8100A/home.html
 - The XML Grammer Document is located in the docs folder
 
 ## Requirements
 * Python 2.7 or Greater
-* lftp (https://lftp.yar.ru/)
 
 ## Scripts
 * set_time.py - Sets the time 
