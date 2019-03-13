@@ -22,8 +22,6 @@ def main():
 	parser.add_option("-i","--ipaddress",action='store', type="string",
 		help="IP Address");
 	parser.add_option("-p","--port",action='store',type="int",help="TCP/IP Port (default:" + settings['port'] + ")");
-	parser.add_option("--utc",action='store_true',help="Set Time to UTC (default)");
-	parser.add_option("--local",action='store_true',help="Set Time to Local Time");
 	(options,args) = parser.parse_args()
 	if len(sys.argv) == 1:
 		parser.print_help()
@@ -37,20 +35,11 @@ def main():
 	if (options.port != None):
 		settings['port'] = options.port
 
-	if (options.utc and not options.local):
-		settings['utc'] = True
-	elif (not options.utc and options.local):
-		settings['utc'] = False
-	elif (options.utc and options.local):
-		parser.error("Specify --utc or --local")
-		quit(1)
 
 	print ("IPAddress: " + settings['ipaddress'])
 	print ("Port: " + str(settings['port']))
-	print ("UTC: " + str(settings['utc']))
 	
 	licor = li8100a(settings['ipaddress'],settings['port'])
-	licor.set_date(settings['utc'])	
 	
 
 if __name__ == '__main__':
